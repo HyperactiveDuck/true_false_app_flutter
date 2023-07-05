@@ -9,21 +9,12 @@ void main() {
 QuizBrain quizBrain = QuizBrain();
 int questionNumber = 0;
 
-
 void answerCheck(bool x) {
-  if (quizBrain.questionbank[questionNumber].questionAnswer == x) {
-    scoreKeeper.add(
-      const Icon(
-        Icons.check,
-        color: Colors.green,
-      ),
-    );
+  if (quizBrain.getQuestionAnswer(questionNumber) == x) {
+    scoreKeeper.add(const Icon(Icons.check, color: Colors.green));
   } else {
     scoreKeeper.add(
-      const Icon(
-        Icons.close,
-        color: Colors.red,
-      ),
+      const Icon(Icons.close, color: Colors.red),
     );
   }
 }
@@ -34,11 +25,8 @@ Column questionBody() {
     children: [
       Center(
         child: Text(
-          quizBrain.questionbank[questionNumber].questionText,
-          style: const TextStyle(
-            fontSize: 30,
-            color: Colors.white,
-          ),
+          quizBrain.getQuestionText(questionNumber),
+          style: const TextStyle(fontSize: 30, color: Colors.white),
         ),
       ),
     ],
@@ -77,9 +65,7 @@ class AppBody extends StatefulWidget {
 }
 
 class _AppBodyState extends State<AppBody> {
-
-  
-  ElevatedButton buttonFunc(Color color , bool a , String b) {
+  ElevatedButton buttonFunc(Color color, bool a, String b) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(175, 100),
@@ -93,7 +79,7 @@ class _AppBodyState extends State<AppBody> {
         });
         debugPrint('You have chosen True');
         questionNumber++;
-        if (questionNumber == quizBrain.questionbank.length) {
+        if (questionNumber == quizBrain.getQuestionLength()) {
           Alert(
                   context: context,
                   title: "Test is over",
@@ -112,18 +98,19 @@ class _AppBodyState extends State<AppBody> {
     return Column(
       children: [
         Expanded(
-            flex: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: questionBody(),
-            )),
+          flex: 10,
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: questionBody(),
+          ),
+        ),
         Expanded(
           flex: 4,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               buttonFunc(Colors.green, true, 'True'),
-              buttonFunc(Colors.red, false, 'False' ),
+              buttonFunc(Colors.red, false, 'False'),
             ],
           ),
         ),

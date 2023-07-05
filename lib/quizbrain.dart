@@ -1,7 +1,8 @@
 import 'questionbook.dart';
 
 class QuizBrain {
-  List<questionbook> questionbank = [
+  
+  final List<questionbook> _questionbank = [
     questionbook(
         questionText: 'You can lead a cow down stairs but not up stairs.',
         questionAnswer: false),
@@ -58,4 +59,16 @@ class QuizBrain {
             'In London, UK, if you happen to die in the House of Parliament, you are technically entitled to a state funeral.',
         questionAnswer: true),
   ];
+
+  String getQuestionText(int questionNumber) {
+    return _questionbank[questionNumber].questionText;
+  }
+  
+  int getQuestionLength() {
+    return _questionbank.length;
+  }
+
+  bool getQuestionAnswer(int questionNumber) {
+    return _questionbank[questionNumber].questionAnswer;
+  }
 }
