@@ -44,7 +44,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 119, 119, 119),
+          backgroundColor: Color.fromARGB(255, 24, 23, 23),
           appBar: AppBar(
             title: const Text('Quizzer'),
             backgroundColor: const Color.fromARGB(255, 39, 39, 39),
